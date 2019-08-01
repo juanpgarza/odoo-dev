@@ -2,8 +2,8 @@ version: '2'
 services:
   odoo:
     build: .
-    image: img_odoo_1905
-    container_name: cont_odoo_11-0519
+    image: img_odoo_11_ar
+    container_name: cont_odoo_11-proy1
     depends_on:
       - db
     volumes:
@@ -20,10 +20,10 @@ services:
     restart: always
     command: "/opt/odoo/odoo-bin -c /opt/odoo/.odoorc"
     networks: 
-      - red-110519-odoo-db
+      - red-odoo-db
   db:
     image: postgres:9.6
-    container_name: cont_db_11-0519
+    container_name: cont_db_11-proy1
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
@@ -35,10 +35,10 @@ services:
       - "data-db:/var/lib/postgresql/data"
     restart: always
     networks: 
-      - red-110519-odoo-db
+      - red-odoo-db
       
 networks:
-   red-110519-odoo-db:
+   red-odoo-db:
   
 volumes:
   data-odoo:
