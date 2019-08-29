@@ -2,8 +2,8 @@ version: '2'
 services:
   odoo:
     build: .
-    image: img_odoo_12_0619
-    container_name: cont_odoo_12-0619
+    image: img_odoo_12
+    container_name: cont_odoo_12-proy1
     depends_on:
       - db
     volumes:
@@ -22,10 +22,10 @@ services:
     #command: "/opt/odoo/odoo-bin -c /opt/odoo/.odoorc -d odoodb -i base"
     #command: "tail -f /dev/null"
     networks: 
-      - red-120619-odoo-db
+      - red-odoo-db
   db:
     image: postgres:9.6
-    container_name: cont_db_12-0619
+    container_name: cont_db_12-proy1
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
@@ -38,10 +38,10 @@ services:
       - "data-db:/var/lib/postgresql/data"
     restart: always
     networks: 
-      - red-120619-odoo-db
+      - red-odoo-db
       
 networks:
-   red-120619-odoo-db:
+   red-odoo-db:
   
 volumes:
   data-odoo:
