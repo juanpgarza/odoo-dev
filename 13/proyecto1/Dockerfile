@@ -28,13 +28,6 @@ RUN apt-get update \
     apt-get install -y \
     nano
 
-#RUN mkdir /opt/odoo
-
-#WORKDIR /opt/odoo
-
-#COPY src/requirements.txt .
-
-#RUN pip3 install --no-cache-dir -r requirements.txt
 RUN apt-get update \
     && \
     apt-get install -y \
