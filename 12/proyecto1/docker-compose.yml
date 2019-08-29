@@ -7,7 +7,7 @@ services:
     depends_on:
       - db
     volumes:
-      - "data-odoo:/filestore"
+      - "data-odoo-12:/filestore"
       - "./src:/opt/odoo"
     environment:
       - ODOO_DB_USER=odoo
@@ -35,7 +35,7 @@ services:
       - PG_SYSTEM_WAL_BUFFERS=8MB
       - PG_SYSTEM_EFFECTIVE_CACHE_SIZE=1024MB
     volumes:
-      - "data-db:/var/lib/postgresql/data"
+      - "data-db-12:/var/lib/postgresql/data"
     restart: always
     networks: 
       - red-odoo12-db
@@ -44,5 +44,5 @@ networks:
    red-odoo12-db:
   
 volumes:
-  data-odoo:
-  data-db:
+  data-odoo-12:
+  data-db-12:
