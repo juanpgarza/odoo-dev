@@ -22,7 +22,7 @@ services:
     #command: "/opt/odoo/odoo-bin -c /opt/odoo/.odoorc -d odoodb -i base"
     #command: "tail -f /dev/null"
     networks: 
-      - red-odoo-db
+      - red-odoo12-db
   db:
     image: postgres:9.6
     container_name: cont_db_12-proy1
@@ -38,10 +38,10 @@ services:
       - "data-db:/var/lib/postgresql/data"
     restart: always
     networks: 
-      - red-odoo-db
+      - red-odoo12-db
       
 networks:
-   red-odoo-db:
+   red-odoo12-db:
   
 volumes:
   data-odoo:
