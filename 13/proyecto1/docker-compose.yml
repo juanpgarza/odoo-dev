@@ -2,12 +2,12 @@ version: '2'
 services:
   odoo:
     build: .
-    image: img_odoo_12
-    container_name: cont_odoo_12-proy1
+    image: img_odoo_13
+    container_name: cont_odoo_13-proy1
     depends_on:
       - db
     volumes:
-      - "data-odoo-12:/filestore"
+      - "data-odoo-13:/filestore"
       - "./src:/opt/odoo"
     environment:
       - ODOO_DB_USER=odoo
@@ -22,10 +22,10 @@ services:
     #command: "/opt/odoo/odoo-bin -c /opt/odoo/.odoorc -d odoodb -i base"
     #command: "tail -f /dev/null"
     networks: 
-      - red-odoo12-db
+      - red-odoo13-db
   db:
     image: postgres:9.6
-    container_name: cont_db_12-proy1
+    container_name: cont_db_13-proy1
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
@@ -35,14 +35,14 @@ services:
       - PG_SYSTEM_WAL_BUFFERS=8MB
       - PG_SYSTEM_EFFECTIVE_CACHE_SIZE=1024MB
     volumes:
-      - "data-db-12:/var/lib/postgresql/data"
+      - "data-db-13:/var/lib/postgresql/data"
     restart: always
     networks: 
-      - red-odoo12-db
+      - red-odoo13-db
       
 networks:
-   red-odoo12-db:
+   red-odoo13-db:
   
 volumes:
-  data-odoo-12:
-  data-db-12:
+  data-odoo-13:
+  data-db-13:
