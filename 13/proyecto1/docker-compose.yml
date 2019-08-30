@@ -19,7 +19,6 @@ services:
       - "8072:8069"
     restart: always
     command: "/opt/odoo/odoo-bin -c /opt/odoo/.odoorc"
-    #command: "/opt/odoo/odoo-bin -c /opt/odoo/.odoorc -d odoodb -i base"
     #command: "tail -f /dev/null"
     networks: 
       - red-odoo13-db
