@@ -67,3 +67,5 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 
 RUN apt-get install -y postgresql postgresql-contrib libpq-dev
+
+RUN pip3 install polib
