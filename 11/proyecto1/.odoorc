@@ -1,5 +1,6 @@
 [options]
-addons_path = /opt/odoo/odoo/addons,/opt/odoo/addons, /opt/odoo/addons-ar/odoo-argentina,/opt/odoo/addons-ar/account-financial-tools,/opt/odoo/addons-ar/account-payment,/opt/odoo/addons-ar/aeroo_reports,/opt/odoo/addons-ar/miscellaneous,/opt/odoo/addons-ar/argentina-reporting,/opt/odoo/addons-ar/reporting-engine,/opt/odoo/addons-ar/argentina-sale,/opt/odoo/addons-ar/stock,/opt/odoo/addons-ar
+addons_path = /opt/odoo/odoo/addons,/opt/odoo/addons
+#, /opt/odoo/addons-ar/odoo-argentina,/opt/odoo/addons-ar/account-financial-tools,/opt/odoo/addons-ar/account-payment,/opt/odoo/addons-ar/aeroo_reports,/opt/odoo/addons-ar/miscellaneous,/opt/odoo/addons-ar/argentina-reporting,/opt/odoo/addons-ar/reporting-engine,/opt/odoo/addons-ar/argentina-sale,/opt/odoo/addons-ar/stock,/opt/odoo/addons-ar
 admin_passwd = admin
 csv_internal_sep = ,
 data_dir = /
