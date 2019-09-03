@@ -3,7 +3,7 @@ services:
   odoo:
     build: .
     image: img_odoo_11_ar
-    container_name: cont_odoo_11-proy1
+    container_name: cont_odoo_11-proy2
     depends_on:
       - db
     volumes:
@@ -23,7 +23,7 @@ services:
       - red-odoo-db
   db:
     image: postgres:9.6
-    container_name: cont_db_11-proy1
+    container_name: cont_db_11-proy2
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
