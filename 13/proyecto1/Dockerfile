@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 LABEL Creator: "juanpgarza"
 
 RUN apt-get update \
@@ -16,8 +16,6 @@ RUN apt-get install -y \
 RUN apt-get update \
     && \
     apt-get install -y npm \
-    && \
-    ln -s /usr/bin/nodejs /usr/bin/node \
     && \
     npm install -g less less-plugin-clean-css \
     && \
@@ -39,7 +37,6 @@ RUN apt-get update \
     libsasl2-dev \
     libldap2-dev \
     libpq-dev \
-    libpng12-dev \
     libjpeg-dev \
     poppler-utils \
     node-less \
@@ -57,15 +54,15 @@ RUN dpkg -i /tmp/wkhtml.deb; exit 0
 
 RUN apt-get -f install -y
 
-RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+#RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 
-RUN apt-get install -y wget
+#RUN apt-get install -y wget
 
-RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | apt-key add -
+#RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | apt-key add -
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+#RUN apt-get update -y
+#RUN apt-get upgrade -y
 
-RUN apt-get install -y postgresql postgresql-contrib libpq-dev
+#RUN apt-get install -y postgresql postgresql-contrib libpq-dev
 
 RUN pip3 install polib
