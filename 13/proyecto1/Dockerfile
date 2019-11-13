@@ -48,11 +48,15 @@ RUN pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet htm
 
 RUN pip3 install libsass==0.12.3
 
-RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb -O /tmp/wkhtml.deb
+RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 
-RUN dpkg -i /tmp/wkhtml.deb; exit 0
+RUN apt install -y ./wkhtmltox_0.12.5-1.bionic_amd64.deb
 
-RUN apt-get -f install -y
+#RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb -O /tmp/wkhtml.deb
+
+#RUN dpkg -i /tmp/wkhtml.deb; exit 0
+
+#RUN apt-get -f install -y
 
 RUN apt-get update
 
