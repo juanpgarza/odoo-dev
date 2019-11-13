@@ -54,15 +54,8 @@ RUN dpkg -i /tmp/wkhtml.deb; exit 0
 
 RUN apt-get -f install -y
 
-#RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+RUN apt-get update
 
-#RUN apt-get install -y wget
-
-#RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | apt-key add -
-
-#RUN apt-get update -y
-#RUN apt-get upgrade -y
-
-#RUN apt-get install -y postgresql postgresql-contrib libpq-dev
+RUN apt-get install -y postgresql-client
 
 RUN pip3 install polib
