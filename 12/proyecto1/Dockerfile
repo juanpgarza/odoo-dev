@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 LABEL Creator: "juanpgarza"
 
 RUN apt-get update \
@@ -16,8 +16,6 @@ RUN apt-get install -y \
 RUN apt-get update \
     && \
     apt-get install -y npm \
-    && \
-    ln -s /usr/bin/nodejs /usr/bin/node \
     && \
     npm install -g less less-plugin-clean-css \
     && \
@@ -46,7 +44,6 @@ RUN apt-get update \
     libsasl2-dev \
     libldap2-dev \
     libpq-dev \
-    libpng12-dev \
     libjpeg-dev \
     poppler-utils \
     node-less \
@@ -58,19 +55,50 @@ RUN pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet htm
 
 RUN pip3 install libsass==0.12.3
 
-RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb -O /tmp/wkhtml.deb
+#RUN apt-get -f install -y
 
-RUN dpkg -i /tmp/wkhtml.deb; exit 0
+RUN apt install python3-daemonize
 
-RUN apt-get -f install -y
+RUN pip3 install phonenumbers
 
-RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+RUN apt-get install git -y
 
-RUN apt-get install -y wget
+RUN pip3 install pyOpenSSL M2Crypto httplib2>=0.7 git+https://github.com/pysimplesoap/pysimplesoap@stable_py3k git+https://github.com/ingadhoc/pyafipws@py3k
 
-RUN wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | apt-key add -
+RUN pip3 install git+https://github.com/edgewall/genshi@stable/0.7.x git+https://github.com/adhoc-dev/aeroolib@master-fix-ods git+https://github.com/aeroo/currency2text.git
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apt-get install default-jre -y
 
-RUN apt-get install -y postgresql postgresql-contrib libpq-dev
+# Instalar herramientas y dependencias de aeroolib
+RUN apt-get install git -y
+RUN apt-get install python3-setuptools python3-uno -y
+RUN apt-get install python3-lxml -y
+RUN pip3 install jsonrpc2 daemonize
+
+RUN mkdir /opt/aeroo
+WORKDIR /opt/aeroo 
+RUN git clone https://github.com/aeroo/aeroo_docs.git
+RUN yes | python3 /opt/aeroo/aeroo_docs/aeroo-docs start -c /etc/aeroo-docs.conf
+RUN ln -s /opt/aeroo/aeroo_docs/aeroo-docs /etc/init.d/aeroo-docs
+RUN update-rc.d aeroo-docs defaults
+RUN service aeroo-docs start
+#RUN service aeroo-docs restart
+
+RUN apt-get install libreoffice libreoffice-script-provider-python -y
+RUN echo '#!/bin/sh' | tee /etc/init.d/office
+RUN echo '/usr/bin/libreoffice --headless --accept="socket,host=localhost,port=8100,tcpNoDelay=1;urp;"&' | tee -a /etc/init.d/office
+RUN chmod +x /etc/init.d/office
+RUN update-rc.d office defaults
+RUN /etc/init.d/office
+
+RUN apt install unoconv -y
+
+WORKDIR /opt/odoo
+
+RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
+
+RUN apt install -y ./wkhtmltox_0.12.5-1.bionic_amd64.deb
+
+RUN apt-get update
+
+RUN apt-get install -y postgresql-client

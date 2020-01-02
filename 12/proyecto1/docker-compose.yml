@@ -36,6 +36,8 @@ services:
       - PG_SYSTEM_EFFECTIVE_CACHE_SIZE=1024MB
     volumes:
       - "data-db-12:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
     restart: always
     networks: 
       - red-odoo12-db
