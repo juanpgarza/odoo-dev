@@ -63,3 +63,8 @@ RUN apt-get update
 RUN apt-get install -y postgresql-client
 
 RUN pip3 install polib
+
+RUN pip3 install Werkzeug==0.14.1
+
+WORKDIR /opt/odoo
+
