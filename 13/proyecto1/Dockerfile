@@ -66,5 +66,25 @@ RUN pip3 install polib
 
 RUN pip3 install Werkzeug==0.14.1
 
+RUN apt-get update \
+    && apt-get upgrade -y
+	
+RUN apt-get install git -y
+
+RUN apt-get install python3-openssl
+# RUN pip3 install pyOpenSSL
+
+RUN apt update && apt install swig -y
+
+RUN pip3 install M2Crypto
+
+RUN pip3 install httplib2>=0.7
+
+RUN pip3 install git+https://github.com/pysimplesoap/pysimplesoap@stable_py3k
+
+RUN pip3 install git+https://github.com/ingadhoc/pyafipws@py3k
+
+# RUN pip3 install git+https://github.com/OCA/openupgradelib/@master
+
 WORKDIR /opt/odoo
 
